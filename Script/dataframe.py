@@ -1,22 +1,14 @@
-import os
-import pandas as pd
-import pdbCleanup
+import pdbCleanup as pc
 import numpy as np
-import csv
 
+
+pc.takeInput1()
 DataFrame1 = []
+pc.CsvToDataframe(DataFrame1)
+
+pc.takeInput2()
 DataFrame2 = []
-
-with open("protein1.csv") as csvfile:
-    reader = csv.reader(csvfile, quoting=csv.QUOTE_NONNUMERIC)
-    for row in reader:
-        DataFrame1.append(row)
-
-
-with open("protein2.csv") as csvfile:
-    reader = csv.reader(csvfile, quoting=csv.QUOTE_NONNUMERIC)
-    for row in reader:
-        DataFrame2.append(row)
+pc.CsvToDataframe(DataFrame2)
 
 arr1 = np.array(DataFrame1)
 arr2 = np.array(DataFrame2)
@@ -28,82 +20,49 @@ print(arr1[0])
 input("This is the second protein:")
 print(arr2[0])
 
-# finding the average of the x coords in protein 1 (arr1)
-sumx = 0
-for x in range(0, 134):
-    sumx += arr1[x][0]
 
-sumx = sumx/134
-# print(sumx)
+# finding the average of the x coords in protein 1 and 2 (arr1 & 2)
 
-for x in range(0, 134):  # appending the x vals
-    arr1[x][0] -= sumx
+def findBarycenter(array, N):
+    sumx = 0
+    for x in range(0, N):
+        sumx += array[x][0]
 
-# finding the average of the y coords in protein 1
-sumy = 0
-for y in range(0, 134):
-    sumy += arr1[y][1]
+    sumx = sumx/N
+    # print(sumx)
 
-sumy = sumy/134
-# print(sumx)
+    for x in range(0, N):  # appending the x vals
+        array[x][0] -= sumx
 
-for y in range(0, 134):  # appending the y vals
-    arr1[y][1] -= sumy
+    # finding the average of the y coords in protein 1
+    sumy = 0
+    for y in range(0, N):
+        sumy += array[y][1]
 
-# finding the average of the z coords in protein 1
-sumz = 0
-for z in range(0, 134):
-    sumz += arr1[z][2]
+    sumy = sumy/N
+    # print(sumx)
 
-sumz = sumz/134
-# print(sumz)
+    for y in range(0, N):  # appending the y vals
+        array[y][1] -= sumy
 
-for z in range(0, 134):  # appending the z vals
-    arr1[z][2] -= sumz
+    # finding the average of the z coords in protein 1
+    sumz = 0
+    for z in range(0, N):
+        sumz += array[z][2]
 
-print("This is the appended array 1")
-print(arr1)
+    sumz = sumz/N
+    # print(sumz)
+
+    for z in range(0, N):  # appending the z vals
+        array[z][2] -= sumz
+
+    print("This is the appended array:")
+    print(array[0])
 
 
-# finding the average of the x coords in protein 2 (arr2)
-sumx = 0
-for x in range(0, 134):
-    sumx += arr2[x][0]
+N1 = np. size(arr1, 0)
+N2 = np. size(arr1, 0)
+findBarycenter(arr1, N1)
+findBarycenter(arr2, N2)
 
-sumx = sumx/134
-# print(sumx)
-
-for x in range(0, 134):  # appending the x vals
-    arr2[x][0] -= sumx
-
-# finding the average of the y coords in protein 1
-sumy = 0
-for y in range(0, 134):
-    sumy += arr2[y][1]
-
-sumy = sumy/134
-# print(sumx)
-
-for y in range(0, 134):  # appending the y vals
-    arr2[y][1] -= sumy
-
-# finding the average of the z coords in protein 1
-sumz = 0
-for z in range(0, 134):
-    sumz += arr2[z][2]
-
-sumz = sumz/134
-# print(sumz)
-
-for z in range(0, 134):  # appending the z vals
-    arr2[z][2] -= sumz
-
-print("This is the appended array 2")
-print(arr2)
-
-# we now have the ~x_k vectors and the ~y_k vectors respectively
-
-# at the end of this sequence the program will remove the csv files
-
-os.remove("protein1.csv")
-os.remove("protein2.csv")
+# we now have the ~x_k(arr1) vectors and the ~y_k(arr2) vectors respectively
