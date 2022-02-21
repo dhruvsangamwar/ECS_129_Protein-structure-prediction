@@ -4,6 +4,6 @@
 
 Instructions on how to use the program:  
 1. Clone the repository. 
-2. Use ```pdparser.py``` to go through the gold standard file and find the single letter notation for all the CA atoms, and then input that into AlphaFold.
+2. Use ```pdparser.py``` to go through the gold standard file and find the single letter notation for all the CA atoms, and then input that into AlphaFold. Download the pdb file provided by AplphaFold
 3. Ensure that you have both the two pdb files you want to comapre in the working directory. 
 4. Use ```python/python3 dataframe.py``` to compile the program if the executable is not given to you. 
