@@ -1,5 +1,7 @@
+import numpy as np
 
-def findBarycenter(array, N):
+
+def findBarycenter(array1, array2, array, N):
     sumx = 0
     for x in range(0, N):
         sumx += array[x][0]
@@ -31,3 +33,15 @@ def findBarycenter(array, N):
 
     for z in range(0, N):  # appending the z vals
         array[z][2] -= sumz
+
+
+def calculateG(array1, array2, array, N):
+
+    G = 0
+    for i in range(0, N):
+        print(array1[i])
+        G += array1[i]
+
+    G = np.true_divide(G, N)
+    G = np.subtract(array, G)
+    # print(G)
