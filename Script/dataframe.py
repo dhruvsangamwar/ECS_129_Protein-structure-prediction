@@ -68,12 +68,13 @@ print('MAX E-value:', maxEig)
 
 # Now we will find the best fit RMSD using the steps below
 print(ytil[0])
-temp = 0
+temp = [0, 0, 0]
 for i in range(0, N1):
     temp += np.add((np.square(xtil[i])), np.square(ytil[i]))
 
 temp = np.subtract(temp, 2*maxEig)
 temp2 = np.true_divide(temp, np.size(xtil, 0))
+print(temp2)
 RMSD = np.sqrt(abs(temp2))
 
 print(RMSD)
