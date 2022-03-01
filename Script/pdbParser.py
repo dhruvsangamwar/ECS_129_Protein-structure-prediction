@@ -3,7 +3,6 @@
 import subprocess
 import os
 import os.path
-import csv
 
 
 def validateInput(file):
