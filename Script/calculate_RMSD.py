@@ -69,9 +69,9 @@ for i in range(0, N1):
 
 n = temp[0] + temp[1] + temp[2]
 
-almostfinal = np.subtract(n, 2*maxEig)
+var = np.subtract(n, 2*maxEig)
 
-temp2 = np.true_divide(almostfinal, np.size(xtil, 0))
+temp2 = np.true_divide(var, np.size(xtil, 0))
 RMSD = np.sqrt(abs(temp2))
 RMSD = round(RMSD, 2)
 print(RMSD)
